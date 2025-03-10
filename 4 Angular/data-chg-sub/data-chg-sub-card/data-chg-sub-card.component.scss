@@ -1,0 +1,43 @@
+.splitContainer {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: calc(100% - 16px);
+
+  .half {
+    width: calc(50%);
+  }
+
+  .left {
+    width: calc(60%);
+  }
+
+  .right {
+    width: calc(40%);
+  }
+}
+
+mat-card.dataChgSubCard {
+  padding-bottom: 0;
+}
+
+mat-form-field {
+  width: calc(100% - 8px);
+}
+
+.bottom {
+  margin-bottom: 8px;
+}
+
+.sectionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+}

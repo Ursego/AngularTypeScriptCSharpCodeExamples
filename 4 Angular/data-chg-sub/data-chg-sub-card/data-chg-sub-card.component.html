@@ -1,0 +1,47 @@
+<mat-card class="dataChgSubCard">
+  <mat-card-header>
+    <div class="sectionHeader">
+      <h2 i18n="@@subscription">Subscription</h2>
+      <button mat-icon-button i18n-matTooltip="@@Edit" matTooltip="Edit" (click)="editSub()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="splitContainer">
+      <div class="left">
+        <mat-form-field>
+          <mat-label i18n="@@idLabel">Id</mat-label>
+          <input type="text" matInput tylerReadOnly [ngModel]="contextDataChgSub?.dataChgSubId">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label i18n="@@name">Name</mat-label>
+          <input matInput tylerReadOnly cdkTextareaAutosize [ngModel]="contextDataChgSub?.dataChgSubName">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label i18n="@@description">Description</mat-label>
+          <textarea matInput tylerReadOnly cdkTextareaAutosize [ngModel]="contextDataChgSub?.dataChgSubDesc"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label i18n="service account form field label@@serviceAccountLabel">Service Account</mat-label>
+          <input type="text" matInput tylerReadOnly [ngModel]="contextDataChgSub?.userName">
+        </mat-form-field>
+      </div>
+
+      <div class="right">
+        <div class="matFormField">
+          <label class="matLabel" i18n="@@enabledLabel">Enabled</label>
+          <mat-icon>{{ contextDataChgSub.activeFlg ? 'check' : 'close' }}</mat-icon>
+        </div>
+        <mat-form-field>
+          <mat-label i18n="@@whoLabel">Changed By</mat-label>
+          <input matInput tylerReadOnly [ngModel]="contextDataChgSub?.who">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label i18n="@@wenLabel">Changed On</mat-label>
+          <input matInput tylerReadOnly [ngModel]="contextDataChgSub?.wen | tylerDateTime">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

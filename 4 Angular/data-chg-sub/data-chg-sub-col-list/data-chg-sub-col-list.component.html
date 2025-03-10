@@ -1,0 +1,12 @@
+<ng-container *ngIf="dataChgSubColListLoaded$ | async; else loading">
+  <div class="gridHeader">
+    <button mat-button mat-raised-button color="primary" i18n="@@manageColumns" (click)="manageCols()">Manage Columns</button>
+  </div>
+
+  <tyler-table [hideTopArea]="true" [columns]="tylerColumns" [records]="dataChgSubColList$ | async" rowSelectColumnId="colName" [sortable]="true" [sortInternally]="true" [defaultSort]="currentSort" backgroundColor="#fff" (doubleClick)="manageCols()"></tyler-table>
+</ng-container>
+
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+

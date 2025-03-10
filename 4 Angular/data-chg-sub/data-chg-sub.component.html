@@ -1,0 +1,64 @@
+<tyler-full-size-page>
+  <ng-container leftArea>
+    <div class="component-left">
+      <button mat-button color="primary" class="reset-all-button" (click)="resetAll()" i18n="@@resetAll">reset all</button>
+      <div class="filter-area">
+        <app-data-chg-sub-filter [(filterText)]="filterText"></app-data-chg-sub-filter>
+        <button mat-icon-button (click)="addSub()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <app-data-chg-sub-list [dataChgSubList]="dataChgSubList$ | async" [(filterText)]="filterText" (subSelectedEmitter)="onSubSelected($event)"></app-data-chg-sub-list>
+    </div>
+  </ng-container>
+
+  <ng-container mainArea>
+    <div *ngIf="contextDataChgSub; else noSubSelectedSplash">
+      <app-data-chg-sub-card [contextDataChgSub]="contextDataChgSub"></app-data-chg-sub-card>
+    </div>
+
+    <mat-tab-group (selectedTabChange)="onTabChange($event)" mat-stretch-tabs="false" class="primaryGroup primaryGroupCard" *ngIf="contextDataChgSub">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div i18n="@@tables">Tables ({{ (dataChgSubTblList$ | async)?.length || 0 }})</div>
+        </ng-template>
+        <mat-card appearance="outlined">
+          <mat-card-content>
+            <app-data-chg-sub-tbl-list [contextDataChgSubId]="contextDataChgSub.dataChgSubId" (tblSelectedEmitter)="setContexTbl($event)"></app-data-chg-sub-tbl-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div *ngIf="!(contextDataChgSubTbl$ | async); else tblSelected" i18n="@@columns">Columns</div>
+          <ng-template #tblSelected>
+            <div i18n="@@columnsWithTableNameAndCount">{{ (contextDataChgSubTbl$ | async).tblName}} Columns ({{ (contextDataChgSubTbl$ | async).colsCount }})</div>
+          </ng-template>
+        </ng-template>
+        <mat-card appearance="outlined">
+          <mat-card-content>
+            <div *ngIf="(contextDataChgSubTbl$ | async); else noTblSelectedSplash">
+              <app-data-chg-sub-col-list [dataChgSubTbl]="contextDataChgSubTbl$ | async"></app-data-chg-sub-col-list>
+            </div>
+
+            <ng-template #noTblSelectedSplash>
+              <div class="splashScreen">
+                <mat-icon>touch_app</mat-icon>
+                <div i18n="@@chooseTableOnLeftTab">Choose a table on the left tab</div>
+              </div>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+
+    <ng-template #noSubSelectedSplash>
+      <div class="splashScreen">
+        <mat-icon>touch_app</mat-icon>
+        <div i18n="@@chooseSubscriptionOnLeftPanel">Choose a subscription on the left panel</div>
+      </div>
+    </ng-template>
+  </ng-container>
+</tyler-full-size-page>

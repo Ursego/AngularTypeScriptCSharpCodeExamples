@@ -1,0 +1,109 @@
+<div>
+  @if (!loaded) {
+    <ng-template>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+  } @else {
+    <div class="buttonContainer">
+      <button
+        type="button"
+        (click)="addDataChgSubCol(emptyDataChgSubCol); $event.stopPropagation()"
+        mat-button
+        color="primary"
+        i18n="button to add a row a to a table of 'columns'@@addColumn"
+      >
+        Add Column
+      </button>
+    </div>
+    <div>
+      <form [formGroup]="dataChgSubColListFormGroup">
+        <div class="tableContainer">
+          <table
+            matSort
+            (matSortChange)="sortDataChgSubColFormArray($event)"
+            [matSortActive]="currentInternalSort.active"
+            [matSortDirection]="currentInternalSort.direction"
+          >
+            <thead>
+              <tr>
+                <th [mat-sort-header]="'colName'" i18n="@@name">Name<span class="requiredStar">*</span></th>
+                <th [mat-sort-header]="'apiPropertyName'" i18n="@@apiPropertyName">API Property Name</th>
+                <th [mat-sort-header]="'monitorChangeFlag'" i18n="@@monitorChangeFlag" class="centerText">Monitor Change Flag</th>
+                <th [mat-sort-header]="'who'" i18n="@@whoLabel">Changed By</th>
+                <th [mat-sort-header]="'wen'" i18n="@@wenLabel">Changed On</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody formArrayName="dataChgSubColFormArray">
+              @for (dataChgSubColFormGroup of dataChgSubColFormArray.controls; track dataChgSubColFormGroup; let index = $index) {
+                <tr [formGroup]="dataChgSubColFormGroup">
+                  <td>
+                    @if (dataChgSubColFormGroup.get('formStatus')?.value === 0) {
+                      <mat-form-field appearance="outline">
+                        <input matInput tylerReadOnly formControlName="colName" />
+                      </mat-form-field>
+                    } @else {
+                      <mat-form-field appearance="outline">
+                        <input matInput required formControlName="colName"
+                          [matAutocomplete]="colNameAutocomplete"
+                          (ngModelChange)="debounceFilterTableColumnNames($event, index)"
+                          (blur)="clearIfColNameControlInvalid(index)"
+                        />
+                        <mat-autocomplete autoActiveFirstOption #colNameAutocomplete="matAutocomplete">
+                          @for (column of filteredTableColumnNamesArray[index] | async; track column) {
+                            <mat-option [value]="column.value">{{ column.value }}</mat-option>
+                          }
+                        </mat-autocomplete>
+                        @if (dataChgSubColFormGroup.get('colName')?.touched && dataChgSubColFormGroup.get('colName')?.hasError('required')) {
+                          <mat-error i18n="Validation error message stating that column name input field is required@@columnNameIsRequired">
+                            Column name is required
+                          </mat-error>
+                        } @else if (dataChgSubColFormGroup.get('colName')?.touched && dataChgSubColFormGroup.get('colName')?.hasError('uniqueColumn')) {
+                          <mat-error i18n="Validation error message stating that column name input field provided already exists@@columnUnique">
+                            Column name already exists
+                          </mat-error>
+                        } @else if (dataChgSubColFormGroup.get('colName')?.touched && dataChgSubColFormGroup.get('colName')?.hasError('inTheList')) {
+                          <mat-error i18n="Validation error message stating that column name input field provided is invalid@@columnInvalid">
+                            Column name is not valid
+                          </mat-error>
+                        }
+                      </mat-form-field>
+                    }
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <input matInput formControlName="apiPropertyName" />
+                      @if (dataChgSubColFormGroup.get('apiPropertyName')?.touched && dataChgSubColFormGroup.get('apiPropertyName')?.hasError('maxlength')) {
+                        <mat-error i18n="Validation error message stating that input field can't exceed 30 characters@@maxLength30">Can't exceed 30 characters</mat-error>
+                      }
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-checkbox formControlName="monitorChangeFlag" class="centerCheckboxWithPadding" />
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <input matInput tylerReadOnly formControlName="who" />
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field appearance="outline">
+                      <input matInput tylerReadOnly formControlName="wen" />
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <div class="actions">
+                      <button mat-icon-button type="button" i18n-matTooltip="@@removeTooltip" [matTooltip]="'Remove'" (click)="deleteDataChgSubCol(index); $event.stopPropagation()">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  }
+</div>

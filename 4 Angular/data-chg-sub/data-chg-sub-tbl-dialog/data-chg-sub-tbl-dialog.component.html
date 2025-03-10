@@ -1,0 +1,77 @@
+<div class="container">
+  @if (namesLovLoaded$ | async) {
+    <form [formGroup]="tblFormGroup">
+      <!-- == Id: == -->
+      @if (tbl.dataChgSubTblId !== -1) {
+        <mat-form-field>
+          <mat-label i18n="@@idLabel">Id</mat-label>
+          <input matInput tylerReadOnly formControlName="dataChgSubTblId" [ngModel]="tbl.dataChgSubTblId" />
+        </mat-form-field>
+      }
+
+      <!-- == Name: == -->
+      <mat-form-field appearance="outline">
+        <mat-label i18n="@@nameLabel">Name</mat-label>
+        @if (tbl.dataChgSubTblId !== -1) {
+          <input matInput tylerReadOnly formControlName="tblName" [(ngModel)]="tbl.tblName"  />
+        } @else {
+          <input matInput
+            required
+            formControlName="tblName"
+            [(ngModel)]="tbl.tblName"
+            (keyup)="transformNameToUpperCase()"
+            [matAutocomplete]="tblNameAutocomplete"
+            cdkFocusInitial />
+          @if (tblNameControl?.touched) {
+            @if (tblNameControl.hasError('required')) {
+              <mat-error i18n="@@nameIsRequired">Name is required</mat-error>
+            }
+            @if (tblNameControl.hasError('minlength')) {
+              <mat-error i18n="@@nameCharacterValidationError">Name must be at least 3 characters long</mat-error>
+            }
+            @if (tblNameControl.hasError('maxlength')) {
+              <mat-error i18n="@@maxLength50">Name can't exceed 50 characters</mat-error>
+            }
+            @if (tblNameControl.hasError('unique')) {
+              <mat-error i18n="@@tableAlreadyExists">Table already exists</mat-error>
+            }
+            @if (tblNameControl.hasError('inTheList')) {
+              <mat-error i18n="@@valueNotFound">Please choose a value from the list</mat-error>
+            }
+          }
+          <mat-autocomplete autoActiveFirstOption #tblNameAutocomplete="matAutocomplete" (optionSelected)="onNamesLovOptionSelected($event.option.value)">
+            @for (name of filteredNamesLov$ | async; track name) {
+              <mat-option [value]="name">{{ name }}</mat-option>
+            }
+          </mat-autocomplete>
+        }
+      </mat-form-field>
+
+      <!-- == API Property Name: == -->
+      <mat-form-field appearance="outline">
+        <mat-label i18n="@@apiPropertyName">API Property Name</mat-label>
+        <input matInput formControlName="apiPropertyName" [(ngModel)]="tbl.apiPropertyName" cdkFocusInitial />
+        @if ((tblFormGroup.get('apiPropertyName')?.touched) && tblFormGroup.get('apiPropertyName').hasError('maxlength')) {
+          <mat-error i18n="@@apiPropertyNameMaxLength">API Property Name can't exceed 30 characters</mat-error>
+        }
+      </mat-form-field>
+
+      @if (tbl.dataChgSubTblId !== -1) {
+        <!-- == Changed By: == -->
+        <mat-form-field>
+          <mat-label i18n="@@whoLabel">Changed By</mat-label>
+          <input matInput tylerReadOnly formControlName="who" [ngModel]="tbl.who" />
+        </mat-form-field>
+        <!-- == Changed On: == -->
+        <mat-form-field>
+          <mat-label i18n="@@wenLabel">Changed On</mat-label>
+          <input matInput tylerReadOnly formControlName="wen" [ngModel]="tbl.wen | tylerDateTime" />
+        </mat-form-field>
+      }
+    </form>
+  } @else {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+</div>
+
+

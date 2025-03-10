@@ -1,0 +1,24 @@
+@if (dataChgSubTblListLoaded$ | async) {
+  <div class="gridHeader">
+    <button mat-button mat-raised-button color="primary" i18n="@@addTable" (click)="this.addTbl()">Add Table</button>
+  </div>
+
+  <tyler-table
+    [hideTopArea]="true"
+    [columns]="tylerColumns"
+    [records]="dataChgSubTblList$ | async"
+    rowSelectColumnId="dataChgSubTblId"
+    rowSelectMode="single"
+    (singleSelect)="this.onTblSelected($event)"
+    (singleDeselect)="this.onTblDeselected()"
+    (doubleClick)="this.saveTbl($event)"
+    [rowActions]="this.tylerRowActions"
+    [tableActions]="this.tylerTableActions"
+    [sortable]="true"
+    [sortInternally]="true"
+    [defaultSort]="this.currentSort"
+    backgroundColor="#fff"
+  ></tyler-table>
+} @else {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}

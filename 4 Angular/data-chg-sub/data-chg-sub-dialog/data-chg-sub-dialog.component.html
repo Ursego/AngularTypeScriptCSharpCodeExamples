@@ -1,0 +1,88 @@
+<div class="container">
+  @if (!loaded) {
+    <ng-template>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+  } @else {
+    <ng-container>
+      <form [formGroup]="dataChgSubFormGroup">
+        @if (dataChgSub.dataChgSubId !== -1) {
+          <ng-container>
+            <mat-form-field appearance="outline">
+              <mat-label i18n="id label for a row@@idLabel">Id</mat-label>
+              <input matInput tylerReadOnly formControlName="dataChgSubId" [ngModel]="dataChgSub.dataChgSubId">
+            </mat-form-field>
+          </ng-container>
+        }
+        @if (dataChgSub.dataChgSubId === -1) {
+          <mat-form-field appearance="outline">
+            <mat-label i18n="name form field label@@nameLabel">Name</mat-label>
+            <input matInput required formControlName="dataChgSubName" [(ngModel)]="dataChgSub.dataChgSubName">
+            @if (dataChgSubFormGroup.get('dataChgSubName')?.touched && dataChgSubFormGroup.get('dataChgSubName')?.hasError('required')) {
+              <mat-error i18n="Validation error message stating that name input field is required@@nameIsRequired">Name is required</mat-error>
+            }
+            @if (dataChgSubFormGroup.get('dataChgSubName')?.touched && dataChgSubFormGroup.get('dataChgSubName')?.hasError('minlength')) {
+              <mat-error i18n="Validation error message stating that name input field must be at least 3 characters long@@minLength3">Name must be at least 3 characters long</mat-error>
+            }
+            @if (dataChgSubFormGroup.get('dataChgSubName')?.touched && dataChgSubFormGroup.get('dataChgSubName')?.hasError('maxlength')) {
+              <mat-error i18n="Validation error message stating that name input field can't exceed 50 characters@@maxLength50">Name can't exceed 50 characters</mat-error>
+            }
+            @if (dataChgSubFormGroup.get('dataChgSubName')?.touched && dataChgSubFormGroup.get('dataChgSubName')?.hasError('unique')) {
+              <mat-error i18n="Validation error message stating that data change subscription with name input field provided already exists@@dataChangeSubscriptionUnique">
+                Data change subscription with name {{ dataChgSub.dataChgSubName }} already exists
+              </mat-error>
+            }
+          </mat-form-field>
+        } @else {
+          <mat-form-field appearance="outline">
+            <mat-label i18n="name form field label@@nameLabel">Name</mat-label>
+            <input matInput tylerReadOnly formControlName="dataChgSubName" [ngModel]="dataChgSub.dataChgSubName">
+          </mat-form-field>
+        }
+        <mat-form-field appearance="outline">
+          <mat-label i18n="a form label called 'description'@@descriptionLabel">Description</mat-label>
+          <textarea matInput formControlName="dataChgSubDesc" [(ngModel)]="dataChgSub.dataChgSubDesc"></textarea>
+          @if (dataChgSubFormGroup.get('dataChgSubDesc')?.touched && dataChgSubFormGroup.get('dataChgSubDesc')?.hasError('maxlength')) {
+            <mat-error i18n="Validation error message stating that description input field can't exceed 1000 characters@@descriptionMaxLength1000">Description can't exceed 1000 characters</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label i18n="service account form field label@@serviceAccountLabel">Service Account</mat-label>
+          <input matInput required formControlName="userName" [matAutocomplete]="serviceAccountAutocomplete" (blur)="clearIfUserNameControlInvalid()">
+          <mat-autocomplete autoActiveFirstOption #serviceAccountAutocomplete="matAutocomplete" (optionSelected)="setServiceAccount($event.option.value)">
+            @for (serviceAccount of filteredServiceAccounts$ | async; track serviceAccount) {
+              <mat-option [value]="serviceAccount.userName">{{ serviceAccount.userName }}</mat-option>
+            }
+          </mat-autocomplete>
+          @if (dataChgSubFormGroup.get('userName')?.touched && dataChgSubFormGroup.get('userName')?.hasError('required')) {
+            <mat-error i18n="Validation error message stating that service account input field is required@@serviceAccountIsRequired">Service account is required</mat-error>
+          } @else if (dataChgSubFormGroup.get('userName')?.touched && dataChgSubFormGroup.get('userName')?.hasError('unique')) {
+            <mat-error i18n="Validation error message stating that data change subscription with service account input field provided already exists@@dataChangeSubscriptionUniqueServiceAccount">
+              A data change subscription with service account {{ dataChgSub.userName }} already exists
+            </mat-error>
+          } @else if (dataChgSubFormGroup.get('userName')?.touched && dataChgSubFormGroup.get('userName')?.hasError('inTheList')) {
+            <mat-error i18n="Validation error message stating that data change subscription with service account input field provided is invalid@@dataChangeSubscriptionInvalidServiceAccount">
+              The service account is invalid
+            </mat-error>
+          }
+        </mat-form-field>
+        
+          <mat-checkbox formControlName="enabled" [(ngModel)]="dataChgSub.activeFlg" i18n="@@enabled"> Enabled</mat-checkbox>
+
+        @if (dataChgSub.dataChgSubId !== -1) {
+          <ng-container>
+            <mat-form-field class="readonly">
+              <mat-label i18n="@@whoLabel">Changed By</mat-label>
+              <input matInput tylerReadOnly formControlName="who">
+            </mat-form-field>
+
+            <mat-form-field class="readonly">
+              <mat-label i18n="@@wenLabel">Changed On</mat-label>
+              <input matInput tylerReadOnly formControlName="wen">
+            </mat-form-field>
+          </ng-container>
+        }
+      </form>
+    </ng-container>
+  }
+</div>

@@ -1,0 +1,11 @@
+<nav class="component-nav" *ngIf="dataChgSubListLoaded$ | async; else loading">
+  <ul>
+    <li *ngFor="let sub of dataChgSubList | DataChgSubListFilterPipe: filterText">
+      <div class="table-item" (click)="onItemClicked(sub)" [ngClass]="getItemClass(sub)">{{ sub.dataChgSubName }}</div>
+    </li>
+  </ul>
+</nav>
+
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

@@ -1,0 +1,48 @@
+.component-left {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.app-data-chg-sub-list {
+  flex: 1;
+  overflow: auto;
+}
+
+.component-toolbar {
+  width: 100%;
+  display: flex;
+
+  button {
+    margin-left: auto;
+  }
+}
+
+.user-instruction {
+  width: 100%;
+  margin-top: 250px;
+  text-align: center;
+}
+
+.reset-all-button {
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+app-data-chg-sub-filter {
+  flex-grow: 1;
+}
+
+.filter-area {
+  display: flex;
+
+  button {
+    margin-top: 10px;
+    margin-left: 12px;
+  }
+}
+
+mat-tab-group {
+  margin-top: 2mm;
+}
+

@@ -1,0 +1,6 @@
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\bin\Debug\Ias.DataChangeSubscriptions.Admin.Domain.dll
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\bin\Debug\Ias.DataChangeSubscriptions.Admin.Domain.pdb
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\obj\Debug\Admin.Domain.csproj.AssemblyReference.cache
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\obj\Debug\Admin.Domain.csproj.CoreCompileInputs.cache
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\obj\Debug\Ias.DataChangeSubscriptions.Admin.Domain.dll
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Domain\obj\Debug\Ias.DataChangeSubscriptions.Admin.Domain.pdb

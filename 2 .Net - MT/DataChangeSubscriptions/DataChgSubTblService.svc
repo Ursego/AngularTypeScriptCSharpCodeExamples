@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Tyler.Ias.DataChangeSubscriptions.Admin.Services.MT.DataChgSubTblService"%>

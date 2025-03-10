@@ -1,0 +1,9 @@
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\bin\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.dll
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\bin\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.pdb
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\obj\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.csproj.AssemblyReference.cache
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\obj\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.csproj.CoreCompileInputs.cache
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\obj\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.dll
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\obj\Debug\Ias.DataChangeSubscriptions.Admin.Services.Contracts.pdb
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\obj\Debug\Ias.Data.1C95B126.Up2Date
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\bin\Debug\Ias.DataChangeSubscriptions.Admin.Domain.dll
+C:\TylerDev\GitHub\ias-main\DotNet\Ias.DataChangeSubscriptions.Admin.Services.Contracts\bin\Debug\Ias.DataChangeSubscriptions.Admin.Domain.pdb

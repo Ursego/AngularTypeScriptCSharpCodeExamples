@@ -5,86 +5,84 @@ import { LovTypes } from "src/app/data-event-triggers/models/data-event-model";
 const sub = "Data Change Subscription";
 const tbl = `${sub} Table`;
 const col = `${sub} Column`;
-const component = `[${sub} Component]`;
+const comp = `[${sub} Component]`;
 
-enum actionDescr {
-  ResetDataChgSubStore = `${component} Reset ${sub} Store`,
+enum d { // actions "d"escriptions
+  ResetDataChgSubStore = `${comp} Reset ${sub} Store`,
 
   // SUBSCRIPTION:
-  GetDataChgSubList = `${component} Get ${sub}s List`,
+  GetDataChgSubList = `${comp} Get ${sub}s List`,
   GetDataChgSubListSuccess = `${GetDataChgSubList} Success`,
-  GetDataChgSub = `${component} Get ${sub}`,
+  GetDataChgSub = `${comp} Get ${sub}`,
   GetDataChgSubSuccess = `${GetDataChgSub} Success`,
-  GetDataChgSubServiceAccounts = `${component} Get ${sub} Service Accounts`,
+  GetDataChgSubServiceAccounts = `${comp} Get ${sub} Service Accounts`,
   GetDataChgSubServiceAccountsSuccess = `${GetDataChgSubServiceAccounts} Success`,
-  AddDataChgSub = `${component} Add ${sub}`,
+  AddDataChgSub = `${comp} Add ${sub}`,
   AddDataChgSubSuccess = `${AddDataChgSub} Success`,
-  UpdateDataChgSub = `${component} Update ${sub}`,
+  UpdateDataChgSub = `${comp} Update ${sub}`,
   UpdateDataChgSubSuccess = `${UpdateDataChgSub} Success`,
 
   // SUBSCRIPTION'S TABLE:
-  SetContextDataChgSubTbl = `${component} Set Context ${tbl}`,
-  GetDataChgSubTblList = `${component} Get ${tbl}s`,
+  SetContextDataChgSubTbl = `${comp} Set Context ${tbl}`,
+  GetDataChgSubTblList = `${comp} Get ${tbl}s`,
   GetDataChgSubTblListSuccess = `${GetDataChgSubTblList} Success`,
-  GetDataChgSubTbl = `${component} Get ${tbl}`,
+  GetDataChgSubTbl = `${comp} Get ${tbl}`,
   GetDataChgSubTblSuccess = `${GetDataChgSubTbl} Success`,
-  AddDataChgSubTbl = `${component} Add ${tbl}`,
+  AddDataChgSubTbl = `${comp} Add ${tbl}`,
   AddDataChgSubTblSuccess = `${AddDataChgSubTbl} Success`,
-  UpdateDataChgSubTbl = `${component} Update ${tbl}`,
+  UpdateDataChgSubTbl = `${comp} Update ${tbl}`,
   UpdateDataChgSubTblSuccess = `${UpdateDataChgSubTbl} Success`,
-  DeleteDataChgSubTbl = `${component} Delete ${tbl}`,
+  DeleteDataChgSubTbl = `${comp} Delete ${tbl}`,
   DeleteDataChgSubTblSuccess = `${DeleteDataChgSubTbl} Success`,
 
   // SUBSCRIPTION'S COLUMN:
-  GetDataChgSubColNameLov = `${component} Get ${col} Name LOV`,
+  GetDataChgSubColNameLov = `${comp} Get ${col} Name LOV`,
   GetDataChgSubColNameLovSuccess = `${GetDataChgSubColNameLov} Success`,
-  GetDataChgSubColList = `${component} Get ${col}s`,
+  GetDataChgSubColList = `${comp} Get ${col}s`,
   GetDataChgSubColListSuccess = `${GetDataChgSubColList} Success`,
-  AddDataChgSubColList = `${component} Add ${col}s`,
+  AddDataChgSubColList = `${comp} Add ${col}s`,
   AddDataChgSubColListSuccess = `${AddDataChgSubColList} Success`,
-  UpdateDataChgSubColList = `${component} Update ${col}s`,
+  UpdateDataChgSubColList = `${comp} Update ${col}s`,
   UpdateDataChgSubColListSuccess = `${UpdateDataChgSubColList} Success`,
-  DeleteDataChgSubCol = `${component} Delete ${col}s`,
+  DeleteDataChgSubCol = `${comp} Delete ${col}s`,
   DeleteDataChgSubColSuccess = `${DeleteDataChgSubCol} Success`,
 }
 
-export const resetDataChgSubStoreAction = createAction(actionDescr.ResetDataChgSubStore);
+export const resetDataChgSubStoreAction = createAction(d.ResetDataChgSubStore);
 
 // SUBSCRIPTION:
-export const getDataChgSubListAction = createAction(actionDescr.GetDataChgSubList);
-export const getDataChgSubListSuccessAction = createAction(actionDescr.GetDataChgSubListSuccess, props<{ actionSubList: IDataChgSub[] }>());
-export const getDataChgSubAction = createAction(actionDescr.GetDataChgSub, props<{ actionSubId: number }>());
-export const getDataChgSubSuccessAction = createAction(actionDescr.GetDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
-export const getDataChgSubServiceAccountsAction = createAction(actionDescr.GetDataChgSubServiceAccounts);
-export const getDataChgSubServiceAccountsSuccessAction = createAction(actionDescr.GetDataChgSubServiceAccountsSuccess, props<{ serviceAccounts: IDataChgSubServiceAccount[] }>());
-export const addDataChgSubAction = createAction(actionDescr.AddDataChgSub, props<{ actionSub: IDataChgSub }>());
-export const addDataChgSubSuccessAction = createAction(actionDescr.AddDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
-export const updateDataChgSubAction = createAction(actionDescr.UpdateDataChgSub, props<{ actionSub: IDataChgSub }>());
-export const updateDataChgSubSuccessAction = createAction(actionDescr.UpdateDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
+export const getDataChgSubListAction = createAction(d.GetDataChgSubList);
+export const getDataChgSubListSuccessAction = createAction(d.GetDataChgSubListSuccess, props<{ actionSubList: IDataChgSub[] }>());
+export const getDataChgSubAction = createAction(d.GetDataChgSub, props<{ actionSubId: number }>());
+export const getDataChgSubSuccessAction = createAction(d.GetDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
+export const getDataChgSubServiceAccountsAction = createAction(d.GetDataChgSubServiceAccounts);
+export const getDataChgSubServiceAccountsSuccessAction = createAction(d.GetDataChgSubServiceAccountsSuccess, props<{ serviceAccounts: IDataChgSubServiceAccount[] }>());
+export const addDataChgSubAction = createAction(d.AddDataChgSub, props<{ actionSub: IDataChgSub }>());
+export const addDataChgSubSuccessAction = createAction(d.AddDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
+export const updateDataChgSubAction = createAction(d.UpdateDataChgSub, props<{ actionSub: IDataChgSub }>());
+export const updateDataChgSubSuccessAction = createAction(d.UpdateDataChgSubSuccess, props<{ actionSub: IDataChgSub }>());
 
 // SUBSCRIPTION TABLE:
-export const setContextDataChgSubTblAction = createAction(actionDescr.SetContextDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl | null }>());
-export const getDataChgSubTblListAction = createAction(actionDescr.GetDataChgSubTblList, props<{ actionSubId: number }>());
-export const getDataChgSubTblListSuccessAction = createAction(actionDescr.GetDataChgSubTblListSuccess, props<{ actionTblList: IDataChgSubTbl[] }>());
-export const getDataChgSubTblAction = createAction(actionDescr.GetDataChgSubTbl, props<{ actionSubId: number, actionTblId: number }>());
-export const getDataChgSubTblSuccessAction = createAction(actionDescr.GetDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
-export const getDataChgSubTblNamesLovAction = createAction(actionDescr.GetDataChgSubTblNamesLov, props<{ actionLovName: string }>());
-export const getDataChgSubTblNamesLovSuccessAction = createAction(actionDescr.GetDataChgSubTblNamesLovSuccess, props<{ actionLovTypes: LovTypes[] }>());
-export const addDataChgSubTblAction = createAction(actionDescr.AddDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl }>());
-export const addDataChgSubTblSuccessAction = createAction(actionDescr.AddDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
-export const updateDataChgSubTblAction = createAction(actionDescr.UpdateDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl }>());
-export const updateDataChgSubTblSuccessAction = createAction(actionDescr.UpdateDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
-export const deleteDataChgSubTblAction = createAction(actionDescr.DeleteDataChgSubTbl, props<{ actionSubId: number, actionTblId: number }>());
-export const deleteDataChgSubTblSuccessAction = createAction(actionDescr.DeleteDataChgSubTblSuccess, props<{ actionTblId: number }>());
+export const setContextDataChgSubTblAction = createAction(d.SetContextDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl | null }>());
+export const getDataChgSubTblListAction = createAction(d.GetDataChgSubTblList, props<{ actionSubId: number }>());
+export const getDataChgSubTblListSuccessAction = createAction(d.GetDataChgSubTblListSuccess, props<{ actionTblList: IDataChgSubTbl[] }>());
+export const getDataChgSubTblAction = createAction(d.GetDataChgSubTbl, props<{ actionSubId: number, actionTblId: number }>());
+export const getDataChgSubTblSuccessAction = createAction(d.GetDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
+export const addDataChgSubTblAction = createAction(d.AddDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl }>());
+export const addDataChgSubTblSuccessAction = createAction(d.AddDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
+export const updateDataChgSubTblAction = createAction(d.UpdateDataChgSubTbl, props<{ actionTbl: IDataChgSubTbl }>());
+export const updateDataChgSubTblSuccessAction = createAction(d.UpdateDataChgSubTblSuccess, props<{ actionTbl: IDataChgSubTbl }>());
+export const deleteDataChgSubTblAction = createAction(d.DeleteDataChgSubTbl, props<{ actionSubId: number, actionTblId: number }>());
+export const deleteDataChgSubTblSuccessAction = createAction(d.DeleteDataChgSubTblSuccess, props<{ actionTblId: number }>());
 
 // SUBSCRIPTION COLUMN:
-export const getDataChgSubColNameLovAction = createAction(actionDescr.GetDataChgSubColNameLov, props<{ actionTblName: string }>());
-export const getDataChgSubColNameLovSuccessAction = createAction(actionDescr.GetDataChgSubColNameLovSuccess, props<{ actionColNameLov: LovType[] }>());
-export const getDataChgSubColListAction = createAction(actionDescr.GetDataChgSubColList, props<{ actionSubId: number, actionTblId: number }>());
-export const getDataChgSubColListSuccessAction = createAction(actionDescr.GetDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
-export const addDataChgSubColListAction = createAction(actionDescr.AddDataChgSubColList, props<{ actionSubId: number, actionTblId: number, actionColList: IDataChgSubCol[] }>());
-export const addDataChgSubColListSuccessAction = createAction(actionDescr.AddDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
-export const updateDataChgSubColListAction = createAction(actionDescr.UpdateDataChgSubColList, props<{ actionSubId: number, actionTblId: number, actionColList: IDataChgSubCol[] }>());
-export const updateDataChgSubColListSuccessAction = createAction(actionDescr.UpdateDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
-export const deleteDataChgSubColListAction = createAction(actionDescr.DeleteDataChgSubCol, props<{ actionSubId: number, actionTblId: number, actionColNames: string[] }>());
-export const deleteDataChgSubColListSuccessAction = createAction(actionDescr.DeleteDataChgSubColSuccess, props<{ actionColNames: string[] }>());
+export const getDataChgSubColNameLovAction = createAction(d.GetDataChgSubColNameLov, props<{ actionTblName: string }>());
+export const getDataChgSubColNameLovSuccessAction = createAction(d.GetDataChgSubColNameLovSuccess, props<{ actionColNameLov: LovType[] }>());
+export const getDataChgSubColListAction = createAction(d.GetDataChgSubColList, props<{ actionSubId: number, actionTblId: number }>());
+export const getDataChgSubColListSuccessAction = createAction(d.GetDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
+export const addDataChgSubColListAction = createAction(d.AddDataChgSubColList, props<{ actionSubId: number, actionTblId: number, actionColList: IDataChgSubCol[] }>());
+export const addDataChgSubColListSuccessAction = createAction(d.AddDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
+export const updateDataChgSubColListAction = createAction(d.UpdateDataChgSubColList, props<{ actionSubId: number, actionTblId: number, actionColList: IDataChgSubCol[] }>());
+export const updateDataChgSubColListSuccessAction = createAction(d.UpdateDataChgSubColListSuccess, props<{ actionColList: IDataChgSubCol[] }>());
+export const deleteDataChgSubColListAction = createAction(d.DeleteDataChgSubCol, props<{ actionSubId: number, actionTblId: number, actionColNames: string[] }>());
+export const deleteDataChgSubColListSuccessAction = createAction(d.DeleteDataChgSubColSuccess, props<{ actionColNames: string[] }>());

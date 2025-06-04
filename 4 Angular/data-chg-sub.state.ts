@@ -1,9 +1,5 @@
 import { IDataChgSub, IDataChgSubCol, IDataChgSubServiceAccount, IDataChgSubTbl, LovType } from "src/app/eventmodel/models/data-chg-sub.model";
 
-export interface ICustomerState {
-  ...
-};
-
 export interface IDataChgSubState {
   dataChgSubList: IDataChgSub[] | null;
   dataChgSubListLoaded: boolean;
